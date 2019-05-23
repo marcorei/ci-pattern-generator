@@ -43,8 +43,13 @@ export async function writePatternSVG(p: {
             p.grid.width :
             p.grid.width + 1
         for (let i = 0; i < maxWidthGrid; i++) {
+            // Horizontal fade:
+            // const progress = (i / (maxWidthGrid - 1))
+            // const maxElementHorizontalFadingFactor = -1 * Math.pow(progress * 2 - 1, 2) + 1
+            const maxElementHorizontalFadingFactor = 1
+
             const numVisibleElements =
-                Math.floor(Math.random() * (p.numSubElements.max - p.numSubElements.min)) +
+                Math.floor(Math.random() * (p.numSubElements.max * maxElementHorizontalFadingFactor - p.numSubElements.min)) +
                 p.numSubElements.min
             const content = generatePatternElementSVG({
                 color: p.colors.line,
